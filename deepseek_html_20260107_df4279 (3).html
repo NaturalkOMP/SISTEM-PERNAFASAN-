@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Sistem Pernapasan Manusia - Kelas 5 SDN Kembangarum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #4A90E2;
+            --light-blue: #E3F2FD;
+            --secondary-green: #66BB6A;
+            --light-green: #E8F5E9;
+            --accent-yellow: #FFD54F;
+            --light-yellow: #FFF9C4;
+            --danger-red: #EF5350;
+            --light-red: #FFEBEE;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: radial-gradient(circle at 10% 20%, rgba(91, 173, 254, 0.1) 0%, rgba(245, 245, 245, 0.1) 100%);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            color: var(--white);
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .teacher-info {
+            font-size: 16px;
+            font-weight: 500;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+        
+        .page {
+            padding: 30px;
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .welcome-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .welcome-icon {
+            font-size: 80px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .welcome-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .welcome-text {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .student-form {
+            background-color: var(--light-green);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 18px;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #3A7BC8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-green {
+            background-color: var(--secondary-green);
+        }
+        
+        .btn-green:hover {
+            background-color: #5CAF5F;
+        }
+        
+        .btn-yellow {
+            background-color: var(--accent-yellow);
+            color: var(--text-dark);
+        }
+        
+        .btn-yellow:hover {
+            background-color: #FFCA28;
+        }
+        
+        .btn-red {
+            background-color: var(--danger-red);
+        }
+        
+        .btn-red:hover {
+            background-color: #E53935;
+        }
+        
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+        
+        .student-info {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+        
+        .question-counter {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--secondary-green);
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar {
+            height: 15px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .question-card {
+            background-color: var(--light-blue);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 6px solid var(--primary-blue);
+        }
+        
+        .question-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .options-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            background-color: var(--white);
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            border-color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+        
+        .option.selected {
+            border-color: var(--secondary-green);
+            background-color: var(--light-green);
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+        }
+        
+        .option-label {
+            font-weight: 600;
+            margin-right: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .option-text {
+            font-size: 16px;
+        }
+        
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .result-container {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .result-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .result-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .score-display {
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 30px 0;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .score-text {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+        }
+        
+        .review-container {
+            text-align: left;
+            margin-top: 40px;
+        }
+        
+        .review-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .review-item {
+            background-color: var(--light-blue);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .review-item.incorrect {
+            background-color: var(--light-red);
+            border-left: 4px solid var(--danger-red);
+        }
+        
+        .review-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .review-answer {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: var(--light-green);
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .visible {
+            display: block;
+        }
+        
+        .teacher-access {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        /* PERBAIKAN 1: CSS untuk Modal Password */
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        .password-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            text-align: center;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        
+        .results-table th {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .results-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .results-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .results-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .whatsapp-instruction {
+            background-color: var(--light-yellow);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid var(--accent-yellow);
+        }
+        
+        .instruction-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .instruction-steps {
+            margin-left: 20px;
+        }
+        
+        .instruction-steps li {
+            margin-bottom: 8px;
+        }
+        
+        .share-button {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .share-button:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #eaeaea;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin-right: 8px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            header h1 {
+                font-size: 22px;
+            }
+            
+            .page {
+                padding: 20px;
+            }
+            
+            .welcome-title {
+                font-size: 26px;
+            }
+            
+            .question-text {
+                font-size: 20px;
+            }
+            
+            .quiz-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .teacher-access {
+                position: static;
+                margin-top: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kuis Sistem Pernapasan Manusia - Kelas 5 SDN Kembangarum</h1>
+            <div class="teacher-info">Disusun oleh: Jamal, S.Pd - Guru Kelas 5 SDN Kembangarum</div>
+        </header>
+        
+        <!-- Halaman Selamat Datang -->
+        <div id="welcome-page" class="page active">
+            <div class="welcome-container">
+                <div class="welcome-icon">🫁</div>
+                <h2 class="welcome-title">Selamat Datang di Kuis Sistem Pernapasan Manusia</h2>
+                <p class="welcome-text">Kuis ini akan menguji pengetahuanmu tentang sistem pernapasan manusia. Siapkan dirimu dan jawablah semua soal dengan baik! Isi data diri terlebih dahulu sebelum memulai.</p>
+                
+                <div class="whatsapp-instruction">
+                    <div class="instruction-title">📱 Untuk Guru/Pengajar:</div>
+                    <p>Bagikan link ini ke WhatsApp grup kelas:</p>
+                    <div class="action-buttons">
+                        <a id="whatsapp-share" class="share-button" href="#" target="_blank">
+                            <span style="font-size: 20px;">📤</span> Bagikan ke WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="student-form">
+                    <div class="form-group">
+                        <label for="student-name"><span class="emoji">👤</span> Nama Lengkap:</label>
+                        <input type="text" id="student-name" placeholder="Masukkan nama lengkapmu">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="student-number"><span class="emoji">🔢</span> Nomor Absen:</label>
+                        <input type="number" id="student-number" placeholder="Masukkan nomor absenmu" min="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="student-class"><span class="emoji">🏫</span> Kelas:</label>
+                        <select id="student-class">
+                            <option value="">Pilih Kelas</option>
+                            <option value="5A">Kelas 5A</option>
+                            <option value="5B">Kelas 5B</option>
+                            <option value="5C">Kelas 5C</option>
+                            <option value="5D">Kelas 5D</option>
+                        </select>
+                    </div>
+                    
+                    <button id="start-btn" class="btn btn-green" disabled>Mulai Kuis</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Halaman Kuis -->
+        <div id="quiz-page" class="page">
+            <div class="quiz-header">
+                <div class="student-info">
+                    <span id="display-name"></span> - Kelas <span id="display-class"></span> - Absen: <span id="display-number"></span>
+                </div>
+                <div class="question-counter">
+                    Soal <span id="current-question">1</span>/<span id="total-questions">10</span>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text">
+                    <span>Mulai</span>
+                    <span>Selesai</span>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-text" id="question-text"></div>
+                
+                <div class="options-container" id="options-container"></div>
+            </div>
+            
+            <div class="quiz-navigation">
+                <button id="prev-btn" class="btn" disabled>Soal Sebelumnya</button>
+                <button id="next-btn" class="btn btn-green">Soal Selanjutnya</button>
+            </div>
+        </div>
+        
+        <!-- Halaman Hasil -->
+        <div id="result-page" class="page">
+            <div class="result-container">
+                <div class="result-icon" id="result-icon">🎉</div>
+                <h2 class="result-title" id="result-title">Selamat!</h2>
+                <div class="score-display" id="score-display">0</div>
+                <p class="score-text" id="score-text"></p>
+                
+                <div class="whatsapp-instruction">
+                    <div class="instruction-title">📋 Hasil Telah Tersimpan</div>
+                    <p>Nilai Anda telah disimpan ke database. Guru dapat melihat hasil semua siswa di halaman rekap nilai.</p>
+                </div>
+                
+                <div id="review-container" class="review-container hidden">
+                    <h3 class="review-title">Jawaban yang Benar untuk Soal yang Salah:</h3>
+                    <div id="review-questions"></div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="restart-btn" class="btn btn-yellow">Ulangi Kuis</button>
+                    <button id="teacher-access-btn" class="btn btn-small">Rekap Nilai Guru</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Password untuk Akses Guru -->
+        <div id="password-modal" class="password-modal">
+            <div class="modal-content">
+                <h3 class="modal-title">Akses Guru</h3>
+                <div class="form-group">
+                    <label for="password-input">Password:</label>
+                    <input type="password" id="password-input" placeholder="Masukkan password">
+                </div>
+                <div class="action-buttons">
+                    <button id="submit-password" class="btn btn-green">Masuk</button>
+                    <button id="cancel-password" class="btn">Batal</button>
+                </div>
+                <p id="password-error" style="color: var(--danger-red); margin-top: 15px; display: none;">Password salah!</p>
+            </div>
+        </div>
+        
+        <!-- Halaman Rekap Nilai Guru -->
+        <div id="teacher-page" class="page">
+            <div class="quiz-header">
+                <h2 class="welcome-title">Rekap Nilai Siswa</h2>
+                <div class="teacher-info">Halaman Guru - Kelas 5 SDN Kembangarum</div>
+            </div>
+            
+            <div class="whatsapp-instruction">
+                <div class="instruction-title">📊 Panduan Melihat Hasil Siswa:</div>
+                <ol class="instruction-steps">
+                    <li>Setiap siswa mengerjakan kuis via link yang dibagikan di WhatsApp</li>
+                    <li>Hasil otomatis tersimpan di database</li>
+                    <li>Guru bisa melihat semua hasil di tabel ini</li>
+                    <li>Untuk mengunduh data, salin tabel dan tempel di Excel/Google Sheets</li>
+                </ol>
+            </div>
+            
+            <div id="results-table-container">
+                <p id="no-results" style="text-align: center; padding: 20px; color: var(--text-light);">
+                    Belum ada data nilai siswa. Bagikan link kuis ke siswa terlebih dahulu.
+                </p>
+                <table id="results-table" class="results-table hidden">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Siswa</th>
+                            <th>Kelas</th>
+                            <th>Absen</th>
+                            <th>Nilai</th>
+                            <th>Tanggal</th>
+                            <th>Waktu</th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-body"></tbody>
+                </table>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="export-btn" class="btn btn-green">Salin Data ke Clipboard</button>
+                <button id="clear-results" class="btn btn-red">Hapus Semua Data</button>
+                <button id="back-to-quiz" class="btn">Kembali ke Kuis</button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 SDN Kembangarum | Kuis Sistem Pernapasan Manusia untuk Kelas 5 SD</p>
+            <p>Disusun oleh: Jamal, S.Pd - Guru Kelas 5 SDN Kembangarum</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data kuis - 10 soal sesuai spesifikasi
+        const quizData = [
+            {
+                question: "Organ utama yang berfungsi untuk bernapas adalah…",
+                options: ["Jantung", "Paru-paru", "Hati", "Lambung"],
+                correctAnswer: 1,
+                explanation: "Paru-paru adalah organ utama sistem pernapasan yang berfungsi untuk pertukaran oksigen dan karbon dioksida."
+            },
+            {
+                question: "Udara masuk ke tubuh melalui bagian…",
+                options: ["Mulut saja", "Hidung", "Telinga", "Mata"],
+                correctAnswer: 1,
+                explanation: "Hidung adalah pintu masuk udara yang dilengkapi dengan rambut halus dan lendir untuk menyaring kotoran."
+            },
+            {
+                question: "Saluran yang menghubungkan hidung ke paru-paru disebut…",
+                options: ["Tenggorokan", "Kerongkongan", "Pembuluh darah", "Usus"],
+                correctAnswer: 0,
+                explanation: "Tenggorokan (trakea) adalah saluran yang menghubungkan hidung dan mulut ke paru-paru."
+            },
+            {
+                question: "Organ yang membantu mengeluarkan udara kotor dari paru-paru adalah…",
+                options: ["Diafragma", "Otot dada", "Kedua jawaban benar", "Hanya A"],
+                correctAnswer: 2,
+                explanation: "Diafragma dan otot dada bekerja sama untuk mengeluarkan udara kotor dari paru-paru."
+            },
+            {
+                question: "Gas apa yang kita hirup dari udara?",
+                options: ["Karbon dioksida", "Oksigen", "Nitrogen", "Hidrogen"],
+                correctAnswer: 1,
+                explanation: "Kita menghirup oksigen (O₂) yang diperlukan tubuh untuk pembakaran energi."
+            },
+            {
+                question: "Gas apa yang kita hembuskan setelah bernapas?",
+                options: ["Oksigen", "Karbon dioksida", "Nitrogen", "Helium"],
+                correctAnswer: 1,
+                explanation: "Kita menghembuskan karbon dioksida (CO₂) sebagai hasil pembuangan dari proses pernapasan sel."
+            },
+            {
+                question: "Paru-paru terletak di dalam rongga…",
+                options: ["Perut", "Dada", "Kepala", "Tangan"],
+                correctAnswer: 1,
+                explanation: "Paru-paru terletak di dalam rongga dada yang dilindungi oleh tulang rusuk."
+            },
+            {
+                question: "Fungsi utama sistem pernapasan adalah…",
+                options: ["Mencerna makanan", "Mengedarkan darah", "Mengambil oksigen dan membuang karbon dioksida", "Melihat"],
+                correctAnswer: 2,
+                explanation: "Fungsi utama sistem pernapasan adalah pertukaran gas: mengambil oksigen dan membuang karbon dioksida."
+            },
+            {
+                question: "Alat bantu pernapasan yang digunakan saat sakit adalah…",
+                options: ["Masker oksigen", "Kacamata", "Tongkat", "Kursi roda"],
+                correctAnswer: 0,
+                explanation: "Masker oksigen digunakan untuk membantu pasien yang kesulitan bernapas mendapatkan oksigen yang cukup."
+            },
+            {
+                question: "Cara menjaga kesehatan sistem pernapasan adalah…",
+                options: ["Merokok", "Olahraga rutin dan tidak merokok", "Makan banyak gorengan", "Tidur larut malam"],
+                correctAnswer: 1,
+                explanation: "Olahraga rutin memperkuat otot pernapasan dan tidak merokok menjaga paru-paru tetap sehat."
+            }
+        ];
+
+        // Variabel global
+        let currentQuestion = 0;
+        let studentAnswers = Array(quizData.length).fill(null);
+        let studentName = "";
+        let studentNumber = "";
+        let studentClass = "";
+        let quizResults = [];
+
+        // Elemen DOM
+        const welcomePage = document.getElementById('welcome-page');
+        const quizPage = document.getElementById('quiz-page');
+        const resultPage = document.getElementById('result-page');
+        const teacherPage = document.getElementById('teacher-page');
+        const passwordModal = document.getElementById('password-modal');
+        
+        const studentNameInput = document.getElementById('student-name');
+        const studentNumberInput = document.getElementById('student-number');
+        const studentClassSelect = document.getElementById('student-class');
+        const startBtn = document.getElementById('start-btn');
+        const whatsappShareBtn = document.getElementById('whatsapp-share');
+        
+        const displayName = document.getElementById('display-name');
+        const displayNumber = document.getElementById('display-number');
+        const displayClass = document.getElementById('display-class');
+        const currentQuestionSpan = document.getElementById('current-question');
+        const totalQuestionsSpan = document.getElementById('total-questions');
+        const progressFill = document.getElementById('progress-fill');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        const resultIcon = document.getElementById('result-icon');
+        const resultTitle = document.getElementById('result-title');
+        const scoreDisplay = document.getElementById('score-display');
+        const scoreText = document.getElementById('score-text');
+        const reviewContainer = document.getElementById('review-container');
+        const reviewQuestions = document.getElementById('review-questions');
+        const restartBtn = document.getElementById('restart-btn');
+        const teacherAccessBtn = document.getElementById('teacher-access-btn');
+        
+        const passwordInput = document.getElementById('password-input');
+        const submitPasswordBtn = document.getElementById('submit-password');
+        const cancelPasswordBtn = document.getElementById('cancel-password');
+        const passwordError = document.getElementById('password-error');
+        
+        const resultsTable = document.getElementById('results-table');
+        const resultsBody = document.getElementById('results-body');
+        const noResults = document.getElementById('no-results');
+        const exportBtn = document.getElementById('export-btn');
+        const clearResultsBtn = document.getElementById('clear-results');
+        const backToQuizBtn = document.getElementById('back-to-quiz');
+
+        // Password guru
+        const TEACHER_PASSWORD = "jamal123";
+
+        // Inisialisasi aplikasi
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set total pertanyaan
+            totalQuestionsSpan.textContent = quizData.length;
+            
+            // Set WhatsApp share link
+            const currentURL = window.location.href;
+            const shareText = `Halo siswa Kelas 5! Silakan kerjakan kuis Sistem Pernapasan Manusia di link berikut:\n${currentURL}\n\nDisusun oleh: Jamal, S.Pd - Guru Kelas 5 SDN Kembangarum`;
+            whatsappShareBtn.href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+            
+            // Load hasil kuis sebelumnya dari localStorage
+            loadResultsFromStorage();
+            
+            // Event listener untuk form input siswa
+            studentNameInput.addEventListener('input', validateForm);
+            studentNumberInput.addEventListener('input', validateForm);
+            studentClassSelect.addEventListener('change', validateForm);
+            startBtn.addEventListener('click', startQuiz);
+            
+            // Event listener untuk navigasi kuis
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            
+            // Event listener untuk halaman hasil
+            restartBtn.addEventListener('click', restartQuiz);
+            teacherAccessBtn.addEventListener('click', showTeacherAccess);
+            
+            // Event listener untuk modal password
+            submitPasswordBtn.addEventListener('click', checkPassword);
+            cancelPasswordBtn.addEventListener('click', hidePasswordModal);
+            passwordInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            
+            // Event listener untuk halaman guru
+            exportBtn.addEventListener('click', exportResults);
+            clearResultsBtn.addEventListener('click', clearResults);
+            backToQuizBtn.addEventListener('click', function() {
+                hideAllPages();
+                resultPage.classList.add('active');
+            });
+            
+            // Validasi form saat halaman dimuat
+            validateForm();
+            
+            // PERBAIKAN 3: Tutup modal saat klik di luar modal
+            passwordModal.addEventListener('click', function(e) {
+                if (e.target === passwordModal) {
+                    hidePasswordModal();
+                }
+            });
+        });
+
+        // Fungsi untuk validasi form input siswa
+        function validateForm() {
+            const name = studentNameInput.value.trim();
+            const number = studentNumberInput.value.trim();
+            const studentClass = studentClassSelect.value;
+            
+            if (name.length > 0 && number.length > 0 && parseInt(number) > 0 && studentClass) {
+                startBtn.disabled = false;
+            } else {
+                startBtn.disabled = true;
+            }
+        }
+
+        // Fungsi untuk memulai kuis
+        function startQuiz() {
+            studentName = studentNameInput.value.trim();
+            studentNumber = studentNumberInput.value.trim();
+            studentClass = studentClassSelect.value;
+            
+            // Simpan data siswa
+            localStorage.setItem('currentStudentName', studentName);
+            localStorage.setItem('currentStudentNumber', studentNumber);
+            localStorage.setItem('currentStudentClass', studentClass);
+            
+            // Reset jawaban siswa
+            studentAnswers = Array(quizData.length).fill(null);
+            currentQuestion = 0;
+            
+            // Tampilkan data siswa di halaman kuis
+            displayName.textContent = studentName;
+            displayNumber.textContent = studentNumber;
+            displayClass.textContent = studentClass;
+            
+            // Tampilkan halaman kuis
+            hideAllPages();
+            quizPage.classList.add('active');
+            showQuestion();
+        }
+
+        // Fungsi untuk menampilkan soal
+        function showQuestion() {
+            // Update counter
+            currentQuestionSpan.textContent = currentQuestion + 1;
+            
+            // Update progress bar
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            progressFill.style.width = `${progress}%`;
+            
+            // Update teks soal
+            questionText.textContent = quizData[currentQuestion].question;
+            
+            // Update tombol navigasi
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === quizData.length - 1) {
+                nextBtn.textContent = "Selesai & Lihat Nilai";
+                nextBtn.classList.add('btn-yellow');
+                nextBtn.classList.remove('btn-green');
+            } else {
+                nextBtn.textContent = "Soal Selanjutnya";
+                nextBtn.classList.remove('btn-yellow');
+                nextBtn.classList.add('btn-green');
+            }
+            
+            // Tampilkan pilihan jawaban
+            optionsContainer.innerHTML = "";
+            
+            quizData[currentQuestion].options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                
+                if (studentAnswers[currentQuestion] === index) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <input type="radio" name="option" id="option-${index}" value="${index}">
+                    <label class="option-label">${String.fromCharCode(65 + index)}</label>
+                    <div class="option-text">${option}</div>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+
+        // Fungsi untuk memilih jawaban
+        function selectOption(index) {
+            studentAnswers[currentQuestion] = index;
+            
+            // Update tampilan opsi yang dipilih
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                if (i === index) {
+                    option.classList.add('selected');
+                    option.querySelector('input[type="radio"]').checked = true;
+                } else {
+                    option.classList.remove('selected');
+                    option.querySelector('input[type="radio"]').checked = false;
+                }
+            });
+        }
+
+        // Fungsi untuk menampilkan soal sebelumnya
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        // Fungsi untuk menampilkan soal berikutnya atau selesai
+        function showNextQuestion() {
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                // Jika di soal terakhir, hitung nilai dan tampilkan hasil
+                calculateScore();
+            }
+        }
+
+        // Fungsi untuk menghitung skor
+        function calculateScore() {
+            let correctCount = 0;
+            const wrongAnswers = [];
+            
+            quizData.forEach((question, index) => {
+                if (studentAnswers[index] === question.correctAnswer) {
+                    correctCount++;
+                } else {
+                    wrongAnswers.push({
+                        question: question.question,
+                        correctAnswer: question.correctAnswer,
+                        studentAnswer: studentAnswers[index],
+                        explanation: question.explanation
+                    });
+                }
+            });
+            
+            const score = Math.round((correctCount / quizData.length) * 100);
+            
+            // Tampilkan halaman hasil
+            showResultPage(score, correctCount, wrongAnswers);
+            
+            // Simpan hasil ke localStorage
+            saveResultToStorage(score);
+        }
+
+        // Fungsi untuk menampilkan halaman hasil
+        function showResultPage(score, correctCount, wrongAnswers) {
+            // Tampilkan halaman hasil
+            hideAllPages();
+            resultPage.classList.add('active');
+            
+            // Update ikon, judul, dan skor
+            if (score >= 80) {
+                resultIcon.textContent = "🎉";
+                resultTitle.textContent = "Selamat!";
+            } else if (score >= 60) {
+                resultIcon.textContent = "👍";
+                resultTitle.textContent = "Bagus!";
+            } else {
+                resultIcon.textContent = "💪";
+                resultTitle.textContent = "Terus Belajar!";
+            }
+            
+            scoreDisplay.textContent = score;
+            scoreText.textContent = `${studentName} menjawab ${correctCount} dari ${quizData.length} soal dengan benar!`;
+            
+            // Tampilkan review untuk jawaban yang salah
+            if (wrongAnswers.length > 0) {
+                reviewContainer.classList.remove('hidden');
+                reviewQuestions.innerHTML = "";
+                
+                wrongAnswers.forEach((item, index) => {
+                    const studentAnswerText = item.studentAnswer !== null 
+                        ? quizData.find(q => q.question === item.question).options[item.studentAnswer]
+                        : "Tidak dijawab";
+                    
+                    const correctAnswerText = quizData.find(q => q.question === item.question).options[item.correctAnswer];
+                    
+                    const reviewItem = document.createElement('div');
+                    reviewItem.className = 'review-item incorrect';
+                    reviewItem.innerHTML = `
+                        <div class="review-question">${index + 1}. ${item.question}</div>
+                        <div><strong>Jawaban kamu:</strong> ${studentAnswerText}</div>
+                        <div class="review-answer"><strong>Jawaban benar:</strong> ${correctAnswerText}<br>
+                        <em>${item.explanation}</em></div>
+                    `;
+                    
+                    reviewQuestions.appendChild(reviewItem);
+                });
+            } else {
+                reviewContainer.classList.add('hidden');
+            }
+        }
+
+        // Fungsi untuk menyimpan hasil ke localStorage
+        function saveResultToStorage(score) {
+            const now = new Date();
+            const result = {
+                name: studentName,
+                kelas: studentClass,
+                absen: studentNumber,
+                nilai: score,
+                tanggal: now.toISOString().split('T')[0], // Format YYYY-MM-DD
+                waktu: now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
+                timestamp: now.getTime()
+            };
+            
+            // Tambahkan hasil baru ke array
+            quizResults.unshift(result); // Tambahkan di awal agar terbaru di atas
+            
+            // Simpan ke localStorage
+            localStorage.setItem('quizResults', JSON.stringify(quizResults));
+            
+            // Tampilkan notifikasi bahwa data tersimpan
+            console.log(`Data ${studentName} tersimpan dengan nilai ${score}`);
+        }
+
+        // Fungsi untuk memuat hasil dari localStorage
+        function loadResultsFromStorage() {
+            const storedResults = localStorage.getItem('quizResults');
+            if (storedResults) {
+                quizResults = JSON.parse(storedResults);
+                // Urutkan berdasarkan timestamp terbaru
+                quizResults.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+            }
+        }
+
+        // Fungsi untuk menampilkan akses guru
+        function showTeacherAccess() {
+            showPasswordModal();
+        }
+
+        // PERBAIKAN 2: Fungsi untuk menampilkan modal password
+        function showPasswordModal() {
+            passwordModal.classList.add('active'); // Gunakan 'active' bukan 'remove('hidden')'
+            passwordInput.value = "";
+            passwordError.style.display = "none";
+            passwordInput.focus();
+        }
+
+        // PERBAIKAN 2: Fungsi untuk menyembunyikan modal password
+        function hidePasswordModal() {
+            passwordModal.classList.remove('active'); // Gunakan 'remove('active')'
+        }
+
+        // Fungsi untuk memeriksa password
+        function checkPassword() {
+            if (passwordInput.value === TEACHER_PASSWORD) {
+                hidePasswordModal();
+                showTeacherPage();
+            } else {
+                passwordError.style.display = "block";
+                passwordInput.focus();
+                passwordInput.select();
+            }
+        }
+
+        // Fungsi untuk menampilkan halaman guru
+        function showTeacherPage() {
+            hideAllPages();
+            teacherPage.classList.add('active');
+            
+            // Tampilkan data jika ada
+            if (quizResults.length > 0) {
+                noResults.classList.add('hidden');
+                resultsTable.classList.remove('hidden');
+                
+                // Isi tabel dengan data
+                resultsBody.innerHTML = "";
+                quizResults.forEach((result, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${result.name}</td>
+                        <td>${result.kelas || '-'}</td>
+                        <td>${result.absen}</td>
+                        <td>${result.nilai}</td>
+                        <td>${result.tanggal}</td>
+                        <td>${result.waktu || '-'}</td>
+                    `;
+                    resultsBody.appendChild(row);
+                });
+            } else {
+                noResults.classList.remove('hidden');
+                resultsTable.classList.add('hidden');
+            }
+        }
+
+        // Fungsi untuk mengekspor hasil
+        function exportResults() {
+            if (quizResults.length === 0) {
+                alert("Belum ada data untuk diekspor.");
+                return;
+            }
+            
+            // Format data menjadi CSV
+            let csvContent = "No,Nama Siswa,Kelas,Absen,Nilai,Tanggal,Waktu\n";
+            
+            quizResults.forEach((result, index) => {
+                csvContent += `${index + 1},${result.name},${result.kelas || ''},${result.absen},${result.nilai},${result.tanggal},${result.waktu || ''}\n`;
+            });
+            
+            // Salin ke clipboard
+            navigator.clipboard.writeText(csvContent)
+                .then(() => {
+                    alert("Data berhasil disalin ke clipboard! Tempel di Excel atau Google Sheets.");
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin: ', err);
+                    alert("Gagal menyalin data. Silakan salin manual dari tabel.");
+                });
+        }
+
+        // Fungsi untuk menghapus semua data hasil
+        function clearResults() {
+            if (confirm("Apakah Anda yakin ingin menghapus semua data hasil siswa?")) {
+                quizResults = [];
+                localStorage.removeItem('quizResults');
+                showTeacherPage(); // Refresh tampilan
+            }
+        }
+
+        // Fungsi untuk mengulang kuis
+        function restartQuiz() {
+            // Reset jawaban
+            studentAnswers = Array(quizData.length).fill(null);
+            currentQuestion = 0;
+            
+            // Tampilkan halaman awal
+            hideAllPages();
+            welcomePage.classList.add('active');
+            
+            // Reset form
+            studentNameInput.value = "";
+            studentNumberInput.value = "";
+            studentClassSelect.value = "";
+            validateForm();
+        }
+
+        // PERBAIKAN 3: Fungsi untuk menyembunyikan semua halaman
+        function hideAllPages() {
+            welcomePage.classList.remove('active');
+            quizPage.classList.remove('active');
+            resultPage.classList.remove('active');
+            teacherPage.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
